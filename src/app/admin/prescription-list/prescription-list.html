@@ -1,0 +1,22 @@
+<div class="admin-container">
+  <div class="list-header">
+    <h1>All User Prescriptions</h1>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">Loading prescriptions...</div>
+
+  <div *ngIf="!isLoading && prescriptions.length === 0" class="no-items">
+    No prescriptions have been uploaded.
+  </div>
+
+  <div *ngIf="prescriptions.length > 0" class="item-grid">
+    <div *ngFor="let p of prescriptions" class="item-card">
+      <h4>Prescription for: {{ p.user?.name }}</h4>
+      <p>Uploaded on: {{ p.issuedDate | date:'medium' }}</p>
+      <p>File: {{ getFilename(p.fileUrl) }}</p>
+      <a [href]="'http://localhost:8080/' + p.fileUrl" target="_blank" rel="noopener noreferrer">
+        <img [src]="'http://localhost:8080/' + p.fileUrl" alt="Prescription for {{ p.user?.name }}">
+      </a>
+    </div>
+  </div>
+</div>

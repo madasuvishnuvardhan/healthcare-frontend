@@ -1,0 +1,37 @@
+<div class="admin-container">
+  <div class="list-header">
+    <h1>All Customer Orders</h1>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">Loading orders...</div>
+
+  <table *ngIf="!isLoading && orders.length > 0" class="data-table">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer</th>
+        <th>Date</th>
+        <th>Total Price</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.user?.name }} ({{ order.user?.email }})</td>
+        <td>{{ order.orderDate | date:'medium' }}</td>
+        <td>₹{{ order.totalPrice?.toFixed(2) }}</td>
+        <td class="actions">
+          <select [value]="order.status" (change)="onStatusChange($event, order.id)" class="form-control">
+            <option value="PENDING">Pending</option>
+            <option value="SHIPPED">Shipped</option>
+            <option value="DELIVERED">Delivered</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!isLoading && orders.length === 0" class="no-items">
+    No orders have been placed yet.
+  </div>
+</div>

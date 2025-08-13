@@ -14,8 +14,11 @@
     <div *ngFor="let p of prescriptions" class="item-card">
       <h4>Prescription #{{p.id}}</h4>
       <p>Uploaded on: {{p.issuedDate | date:'medium'}}</p>
-      
       <p>File: {{ getFilename(p.fileUrl) }}</p>
+
+      <a [href]="getImageUrl(p.fileUrl)" target="_blank" rel="noopener noreferrer">
+        <img [src]="getImageUrl(p.fileUrl)" alt="Prescription #{{p.id}}">
+      </a>
       
     </div>
   </div>

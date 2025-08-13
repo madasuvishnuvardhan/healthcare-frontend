@@ -1,15 +1,17 @@
 import { Routes } from '@angular/router';
 import { Login } from './auth/login/login';
 import { Register } from './auth/register/register';
+import { HomeComponent } from './home/home';
 import { authGuard } from './guards/auth-guard';
 import { adminGuard } from './guards/admin-guard';
 
 export const routes: Routes = [
-  // Authentication routes accessible to everyone
+  // Authentication routes
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: Login },
   { path: 'register', component: Register },
 
-  // --- User-facing routes (all authenticated users) ---
+  // User-facing routes
   {
     path: 'medicines',
     canActivate: [authGuard],
@@ -34,7 +36,7 @@ export const routes: Routes = [
   // --- Admin-only routes ---
   {
     path: 'admin',
-    canActivate: [authGuard, adminGuard], // Both guards are applied
+    canActivate: [authGuard, adminGuard],
     children: [
       { path: '', redirectTo: 'medicines', pathMatch: 'full' },
       {
@@ -60,13 +62,20 @@ export const routes: Routes = [
        {
         path: 'patients/edit/:id',
         loadComponent: () => import('./admin/patient-form/patient-form').then(m => m.PatientForm)
+      },
+      // --- NEWLY ADDED ADMIN ROUTES ---
+      {
+        path: 'orders',
+        loadComponent: () => import('./admin/order-list/order-list').then(m => m.AdminOrderList)
+      },
+      {
+        path: 'prescriptions',
+        loadComponent: () => import('./admin/prescription-list/prescription-list').then(m => m.AdminPrescriptionList)
       }
     ]
   },
 
   // --- Redirects and Fallback ---
-  // If the path is empty, redirect to the main user medicine view
-  { path: '', redirectTo: '/medicines', pathMatch: 'full' },
-  // If the URL doesn't match any of the above, redirect to the main view
-  { path: '**', redirectTo: '/medicines' }
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home' }
 ];

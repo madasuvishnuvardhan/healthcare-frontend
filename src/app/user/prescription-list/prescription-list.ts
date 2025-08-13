@@ -24,18 +24,25 @@ export class PrescriptionList implements OnInit {
     });
   }
 
-  // --- ADD THIS HELPER METHOD ---
-  /**
-   * Safely extracts the filename from a full path, handling both
-   * Windows and Unix-style separators.
-   * @param fileUrl The full file path or URL.
-   * @returns The extracted filename or an empty string.
-   */
   getFilename(fileUrl: string | undefined): string {
     if (!fileUrl) {
       return '';
     }
-    // Handles both C:\path\to\file.jpg and /path/to/file.jpg
     return fileUrl.split(/[\\/]/).pop() || '';
+  }
+
+  // --- NEW HELPER METHOD ---
+  /**
+   * Constructs a full, valid URL to the prescription image served by the backend.
+   * @param fileUrl The file path from the backend.
+   * @returns The full URL to the image.
+   */
+  getImageUrl(fileUrl: string | undefined): string {
+    if (!fileUrl) {
+      return '';
+    }
+    // Replace backslashes with forward slashes for a valid URL
+    const correctedPath = fileUrl.replace(/\\/g, '/');
+    return `http://localhost:8080/${correctedPath}`;
   }
 }

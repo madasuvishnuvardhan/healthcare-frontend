@@ -30,4 +30,20 @@ export class OrderList implements OnInit {
       }
     });
   }
+
+  cancelOrder(orderId: number | undefined): void {
+    if (orderId === undefined) return;
+
+    if (confirm('Are you sure you want to cancel this order?')) {
+      this.orderService.cancelOrder(orderId).subscribe({
+        next: () => {
+          this.orders = this.orders.filter(o => o.id !== orderId);
+        },
+        error: (err) => {
+          this.errorMessage = 'Failed to cancel the order. Please try again.';
+          console.error(err);
+        }
+      });
+    }
+  }
 }

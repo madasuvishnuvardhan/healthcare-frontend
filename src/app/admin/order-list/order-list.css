@@ -1,0 +1,31 @@
+/* Generic Admin List and Form Styles */
+.admin-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.data-table th, .data-table td {
+  border: 1px solid #dee2e6;
+  padding: 8px;
+  text-align: left;
+}
+.data-table thead {
+  background-color: #f8f9fa;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+}
+.form-control {
+  padding: 8px;
+  box-sizing: border-box;
+}

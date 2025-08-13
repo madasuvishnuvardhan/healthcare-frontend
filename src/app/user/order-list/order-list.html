@@ -24,6 +24,9 @@
             {{ item.medicine.name }} - ({{ item.quantity }} x ₹{{ item.medicine.price?.toFixed(2) }})
           </li>
         </ul>
+        <button *ngIf="order.status === 'PENDING'" (click)="cancelOrder(order.id)" class="btn btn-danger btn-sm">
+          Cancel Order
+        </button>
       </div>
     </div>
   </div>
