@@ -1,0 +1,34 @@
+<div class="view-container">
+  <h1>Available Medicines</h1>
+
+  <div class="cart-section">
+    <h2>Your Cart</h2>
+    <div *ngIf="cart.length === 0" class="cart-empty">
+      Your cart is empty.
+    </div>
+    <ul *ngIf="cart.length > 0">
+      <li *ngFor="let item of cart">
+        {{ getMedicineName(item.medicine.id) }} - Quantity: {{ item.quantity }}
+      </li>
+    </ul>
+    <button (click)="placeOrder()" [disabled]="cart.length === 0" class="btn btn-success">Place Order</button>
+    <div *ngIf="orderStatusMessage"
+         [ngClass]="{'success-message': !orderStatusIsError, 'error-message': orderStatusIsError}"
+         class="status-message">
+      {{ orderStatusMessage }}
+    </div>
+  </div>
+
+  <div class="medicine-grid">
+    <div *ngFor="let med of medicines" class="medicine-card">
+      <h3>{{ med.name }}</h3>
+      <p><strong>Brand:</strong> {{ med.brand }}</p>
+      <p><strong>Category:</strong> {{ med.category }}</p>
+      <p><strong>Price:</strong> ₹{{ med.price?.toFixed(2) }}</p>
+      <p [ngClass]="{'in-stock': (med.stock ?? 0) > 0, 'out-of-stock': (med.stock ?? 0) === 0}">
+        <strong>Stock:</strong> {{ (med.stock ?? 0) > 0 ? med.stock + ' available' : 'Out of Stock' }}
+      </p>
+      <button (click)="addToCart(med)" [disabled]="(med.stock ?? 0) === 0" class="btn">Add to Cart</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="upload-container">
+  <h2>Upload Prescription</h2>
+  <div class="form-group">
+    <label for="file">Choose a prescription image or PDF</label>
+    <input id="file" type="file" (change)="onFileSelected($event)" class="form-control">
+  </div>
+  <button (click)="upload()" [disabled]="!selectedFile" class="btn">Upload</button>
+
+  <div *ngIf="statusMessage" class="status-message" [ngClass]="{'error-message': isError, 'success-message': !isError}">
+    {{ statusMessage }}
+  </div>
+</div>

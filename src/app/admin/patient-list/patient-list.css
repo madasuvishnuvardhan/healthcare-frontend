@@ -1,0 +1,58 @@
+/* Generic Admin List and Form Styles */
+.admin-container, .form-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.data-table th, .data-table td {
+  border: 1px solid #dee2e6;
+  padding: 8px;
+  text-align: left;
+}
+.data-table thead {
+  background-color: #f8f9fa;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+}
+.btn {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+}
+.btn-secondary {
+  color: #fff;
+  background-color: #6c757d;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-control {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}

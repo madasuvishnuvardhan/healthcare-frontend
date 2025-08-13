@@ -1,0 +1,32 @@
+<div class="admin-container">
+  <div class="list-header">
+    <h1>Manage Medicines</h1>
+    <a routerLink="/admin/medicines/new" class="btn btn-primary">Add New Medicine</a>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let med of medicines">
+        <td>{{ med.id }}</td>
+        <td>{{ med.name }}</td>
+        <td>{{ med.brand }}</td>
+        <td>₹{{ med.price?.toFixed(2) }}</td>
+        <td>{{ med.stock }}</td>
+        <td class="actions">
+          <a [routerLink]="['/admin/medicines/edit', med.id]" class="btn btn-sm btn-secondary">Edit</a>
+          <button (click)="deleteMedicine(med.id)" class="btn btn-sm btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

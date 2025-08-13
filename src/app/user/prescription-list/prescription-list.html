@@ -1,0 +1,22 @@
+<div class="list-container">
+  <div class="list-header">
+    <h1>My Prescriptions</h1>
+    <a routerLink="/prescriptions/upload" class="btn btn-primary">Upload New Prescription</a>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">Loading your prescriptions...</div>
+
+  <div *ngIf="!isLoading && prescriptions.length === 0" class="no-items">
+    You have not uploaded any prescriptions.
+  </div>
+
+  <div *ngIf="prescriptions.length > 0" class="item-grid">
+    <div *ngFor="let p of prescriptions" class="item-card">
+      <h4>Prescription #{{p.id}}</h4>
+      <p>Uploaded on: {{p.issuedDate | date:'medium'}}</p>
+      
+      <p>File: {{ getFilename(p.fileUrl) }}</p>
+      
+    </div>
+  </div>
+</div>

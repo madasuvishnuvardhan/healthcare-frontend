@@ -1,0 +1,37 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/" class="navbar-item">Healthcare</a>
+  </div>
+
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <a *ngIf="isLoggedIn" routerLink="/medicines" class="navbar-item">Medicines</a>
+      <a *ngIf="isLoggedIn" routerLink="/orders" class="navbar-item">My Orders</a>
+      <a *ngIf="isLoggedIn" routerLink="/prescriptions" class="navbar-item">My Prescriptions</a>
+
+      <div *ngIf="isAdmin" class="navbar-item has-dropdown">
+        <a class="navbar-link">Admin</a>
+        <div class="navbar-dropdown">
+          <a routerLink="/admin/medicines" class="navbar-item">Manage Medicines</a>
+          <a routerLink="/admin/patients" class="navbar-item">Manage Patients</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a *ngIf="!isLoggedIn" routerLink="/register" class="btn btn-primary">
+            <strong>Sign up</strong>
+          </a>
+          <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-light">
+            Log in
+          </a>
+          <button *ngIf="isLoggedIn" (click)="logout()" class="btn btn-light">
+            Log out
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

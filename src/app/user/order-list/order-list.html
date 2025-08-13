@@ -1,0 +1,30 @@
+<div class="list-container">
+  <h1>My Orders</h1>
+
+  <div *ngIf="isLoading" class="loading">Loading your orders...</div>
+
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <div *ngIf="!isLoading && !errorMessage && orders.length === 0" class="no-items">
+    You have not placed any orders yet.
+  </div>
+
+  <div *ngIf="orders.length > 0" class="orders-list">
+    <div *ngFor="let order of orders" class="order-card">
+      <div class="order-header">
+        <h3>Order #{{ order.id }}</h3>
+        <span class="order-status" [ngClass]="order.status?.toLowerCase()">{{ order.status }}</span>
+      </div>
+      <div class="order-body">
+        <p><strong>Date:</strong> {{ order.orderDate | date:'medium' }}</p>
+        <p><strong>Total:</strong> ₹{{ order.totalPrice?.toFixed(2) }}</p>
+        <h4>Items:</h4>
+        <ul>
+          <li *ngFor="let item of order.orderItems">
+            {{ item.medicine.name }} - ({{ item.quantity }} x ₹{{ item.medicine.price?.toFixed(2) }})
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
