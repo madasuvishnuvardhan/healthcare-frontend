@@ -7,7 +7,7 @@ import { Patient } from '../models/patient.model';
   providedIn: 'root'
 })
 export class PatientService {
-  private baseUrl = 'http://localhost:8080/api/patients';
+  private baseUrl = 'http://13.53.173.62:8080/api/patients';
 
   constructor(private http: HttpClient) { }
 

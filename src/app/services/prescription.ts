@@ -7,7 +7,7 @@ import { Prescription } from '../models/prescription.model';
   providedIn: 'root'
 })
 export class PrescriptionService {
-  private baseUrl = 'http://localhost:8080/api/prescriptions';
+  private baseUrl = 'http://13.53.173.62:8080/api/prescriptions';
 
   constructor(private http: HttpClient) { }
 

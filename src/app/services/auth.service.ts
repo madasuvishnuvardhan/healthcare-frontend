@@ -9,7 +9,7 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8080/auth';
+  private baseUrl = 'http://13.53.173.62:8080/auth';
 
   // We inject PLATFORM_ID to determine if we are on the server or in the browser.
   constructor(
