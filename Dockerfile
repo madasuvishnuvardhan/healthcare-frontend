@@ -8,7 +8,7 @@ RUN npm run build
 
 # Stage 2: Serve the application with Nginx
 FROM nginx:alpine
-# Copy the built application from the new output directory
+# Copy the built application from the correct output directory
 COPY --from=build /app/dist/healthcare-frontend /usr/share/nginx/html
 # Copy our custom Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
