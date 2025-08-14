@@ -8,5 +8,8 @@ RUN npm run build
 
 # Stage 2: Serve the application with Nginx
 FROM nginx:alpine
-COPY --from=build /app/dist/healthcare-frontend/browser /usr/share/nginx/html
+# Copy the built application from the new output directory
+COPY --from=build /app/dist/healthcare-frontend /usr/share/nginx/html
+# Copy our custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
